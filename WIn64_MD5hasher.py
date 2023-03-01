@@ -1,7 +1,7 @@
 import hashlib
 
 # Open the input and output files
-with open("output.txt", "r", encoding="utf-16") as infile, open("crackme.txt", "w") as outfile:
+with open("output.txt", "r", encoding="utf-8") as infile, open("crackme.txt", "w") as outfile:
     # Read each line from the input file
     for line in infile:
         # Remove any trailing whitespace
