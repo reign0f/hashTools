@@ -1,26 +1,31 @@
+//This code prepends one salt to the contents of a chosen password file, then appends a second salt to that same file.  
+//It then uses MD5 to hash every concatenated string in the file and prints the result to another file of your choosing.
+//This is most useful if you have user hashes already to compare the output to a known hash.
+//Make sure your password file is in the same directory as twoSaltMD5.php and that you have write permissions in the directory.
+
 <?php
-$LEADING_SALT = "soMe3FK2J+YFAMzUjwpfpA";
-$TRAILING_SALT = "6dcKXY3x/JRZbyj9RDB/Lw";
+$LEADING_SALT = "enter the salt you want prepended here";
+$TRAILING_SALT = "enter the salt you want to append here";
 
 function passwordfile()
 {
     global $LEADING_SALT, $TRAILING_SALT;
 
     // Open the passwd.txt file for reading
-    $pwd_file = fopen("passwd.txt", "r");
+    $pwd_file = fopen("nameOfYourPasswordTextFileHere.txt", "r");
     if (!$pwd_file) {
         die("Could not open passwd.txt file for reading");
     }
 
     // Initialize the output file handle and line counter
-    $outputFilename = 'bossHash.txt';
+    $outputFilename = 'nameYourOutputFileHere.txt';
     $outputHandle = fopen($outputFilename, 'w');
     if (!$outputHandle) {
-        die("Could not open bossHash.txt file for writing");
+        die("Could not open the file for writing");
     }
     $lineCounter = 1;
 
-    // Read each line from the passwd.txt file, modify it, and write it to the output file
+    // Read each line from the password file, modify it, and write it to the output file
     while (!feof($pwd_file)) {
         $password = fgets($pwd_file);
         if ($password != ' ') {
